@@ -4,7 +4,7 @@ import time
 
 
 class handDetector():
-    def __init__(self, mode=False, maxHands=1, detectConfidence=0.5, trackConfidence=0.5):
+    def __init__(self, mode=False, maxHands=2, detectConfidence=0.75, trackConfidence=0.75):
         self.mode = mode
         self.maxHands = maxHands
         self.detectConfidence = detectConfidence
