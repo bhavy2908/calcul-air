@@ -14,7 +14,8 @@ while True:
     success, img = cap.read()
 
     img = handDetector.detectHands(img, display=False)
-    landmarkList = handDetector.findPosition(img)
+    landmarkList = handDetector.findPosition(img, 0)
+
     if len(landmarkList) != 0:
         fingerCount = []
         if landmarkList[4][1] > landmarkList[17][1]:
@@ -37,6 +38,8 @@ while True:
                 fingerCount.append(0)
         totalFingers = fingerCount.count(1)
         cv2.putText(img, "Fingers: " + str(int(totalFingers)), (10, 50), cv2.FONT_HERSHEY_DUPLEX, 1.5, (255, 255, 255), 2)
+
+
 
     else:
         cv2.putText(img, "No Hands Found", (10, 50), cv2.FONT_HERSHEY_DUPLEX, 1.5, (255, 255, 255),
