@@ -4,7 +4,7 @@ import time
 
 
 class handDetector():
-    def __init__(self, mode=False, maxHands=2, detectConfidence=0.5, trackConfidence=0.5):
+    def __init__(self, mode=False, maxHands=1, detectConfidence=0.5, trackConfidence=0.5):
         self.mode = mode
         self.maxHands = maxHands
         self.detectConfidence = detectConfidence
@@ -39,7 +39,7 @@ def main():
 
         cv2.putText(img, str(int(fps)), (10, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 255), 3)
 
-        cv2.imshow("Image", img)
+        cv2.imshow("Calcul Air", img)
         cv2.waitKey(1)
 
 
