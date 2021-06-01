@@ -34,12 +34,11 @@ while True:
             else:
                 fingerCount.append(0)
         for id in range(0, 4):
-            if landmarkList[fingerTips[id]][2] < landmarkList[fingerTips[id]-1][2]:
+            if landmarkList[fingerTips[id]][2] < landmarkList[fingerTips[id] - 1][2]:
                 fingerCount.append(1)
             else:
                 fingerCount.append(0)
         totalFingers = fingerCount.count(1)
-
 
     if handDetector.noOfHands() == 2:
 
@@ -70,13 +69,11 @@ while True:
                     (255, 255, 255),
                     2)
 
-
-
     Fingers = totalFingers + totalFingers2
     if handDetector.noOfHands() != 0:
-        cv2.putText(img, "Fingers: " + str(int(Fingers)), (10, 50), cv2.FONT_HERSHEY_DUPLEX, 1.5,
+        cv2.putText(img, "Hands: " + str(int(handDetector.noOfHands())) + " Fingers: " + str(int(Fingers)), (10, 50),
+                    cv2.FONT_HERSHEY_DUPLEX, 1.5,
                     (255, 255, 255),
                     2)
     cv2.imshow("Calcul Air", img)
     cv2.waitKey(1)
-
