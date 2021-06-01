@@ -24,7 +24,7 @@ class handDetector():
                     self.drawHand.draw_landmarks(img, handLandmarks, self.mpHands.HAND_CONNECTIONS)
         return img
 
-    def findPosition(self, img, handNo=0):
+    def findPosition(self, img, handNo):
 
         landmarkList = []
 
@@ -36,7 +36,13 @@ class handDetector():
 
                 landmarkList.append([id, cx, cy])
 
+
         return landmarkList
+    def noOfHands(self):
+        if self.results.multi_hand_landmarks:
+            return len(self.results.multi_hand_landmarks)
+        return 0
+
 
 
 def main():
@@ -44,6 +50,7 @@ def main():
     previousTime = 0
     currentTime = 0
     hand_detector = handDetector()
+
     while True:
         success, img = cap.read()
         img = hand_detector.detectHands(img)
@@ -57,6 +64,8 @@ def main():
 
         cv2.imshow("Calcul Air", img)
         cv2.waitKey(1)
+        print(hand_detector.noOfHands())
+
 
 
 if __name__ == "__main__":
