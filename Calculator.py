@@ -40,7 +40,10 @@ result = 0
 
 reset = 0
 
+operationList = [2, 4, 6, 8]
+
 while True:
+
     totalFingers = 0
     totalFingers2 = 0
     success, img = cap.read()
@@ -108,15 +111,16 @@ while True:
     else:
         cv2.putText(img, "Initiated", (10, 30),
                     cv2.FONT_HERSHEY_DUPLEX, 1,
-                    (255, 255, 255),
+                    (181, 143, 49),
                     2)
         beginBool = True
 
     if beginBool == True and firstNumberCount < 100:
-        cv2.putText(img, "Enter first Number", (500, 30),
+        cv2.putText(img, "Enter First Number", (500, 30),
                     cv2.FONT_HERSHEY_DUPLEX, 1,
                     (255, 255, 255),
                     2)
+    if (beginBool == True and firstNumberCount < 100) and handDetector.noOfHands() != 0:
         firstArr[firstNumberCount] = Fingers
         firstNumberCount += 1
     if firstNumberCount >= 100:
@@ -129,10 +133,12 @@ while True:
         firstNumberBool = True
 
     if firstNumberBool == True and secondNumberCount < 100:
-        cv2.putText(img, "Enter second Number", (500, 30),
+        cv2.putText(img, "Enter Second Number", (500, 30),
                     cv2.FONT_HERSHEY_DUPLEX, 1,
                     (255, 255, 255),
                     2)
+
+    if firstNumberBool == True and secondNumberCount < 100 and handDetector.noOfHands() != 0:
         secondArr[secondNumberCount] = Fingers
         secondNumberCount += 1
     if secondNumberCount >= 100:
@@ -143,8 +149,7 @@ while True:
                     (255, 255, 255),
                     2)
         secondNumberBool = True
-
-        if secondNumberBool == True and operationNumberCount < 130:
+        if secondNumberBool == True and operationNumberCount < 130 and operationNumberBool == False:
             cv2.putText(img, "Select Operation", (500, 30),
                         cv2.FONT_HERSHEY_DUPLEX, 1,
                         (255, 255, 255),
@@ -165,62 +170,83 @@ while True:
                         cv2.FONT_HERSHEY_DUPLEX, 1,
                         (255, 255, 255),
                         2)
+        if secondNumberBool == True and operationNumberCount < 100 and handDetector.noOfHands() != 0:
+            if Fingers not in operationList:
+                cv2.putText(img, "Please select an Valid Operation", (850, 80),
+                            cv2.FONT_HERSHEY_DUPLEX, 0.75,
+                            (0, 0, 255),
+                            2)
             operationArr[operationNumberCount] = Fingers
             operationNumberCount += 1
-        if operationNumberCount >= 130:
+        if operationNumberCount >= 100:
             operationNumber = np.bincount(operationArr).argmax()
             if operationNumber == 2:
-                cv2.putText(img, "Operation: Addition" , (10, 200),
+                cv2.putText(img, "Operation: Addition", (10, 200),
                             cv2.FONT_HERSHEY_DUPLEX, 1,
                             (255, 255, 255),
                             2)
                 result = firstNumber + secondNumber
-                cv2.putText(img, "Result: " + str(result), (10, 350),
-                            cv2.FONT_HERSHEY_DUPLEX, 2.5,
+                cv2.putText(img, "Result: ", (10, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
                             (255, 255, 255),
                             3)
                 operationNumberBool = True
+                cv2.putText(img, str(result), (250, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
+                            (181, 143, 49),
+                            3)
             elif operationNumber == 4:
-                cv2.putText(img, "Operation: Subtraction" , (10, 200),
+                cv2.putText(img, "Operation: Subtraction", (10, 200),
                             cv2.FONT_HERSHEY_DUPLEX, 1,
                             (255, 255, 255),
                             2)
                 result = firstNumber - secondNumber
-                cv2.putText(img, "Result: " + str(result), (10, 350),
-                            cv2.FONT_HERSHEY_DUPLEX, 2.5,
+                cv2.putText(img, "Result: ", (10, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
                             (255, 255, 255),
                             3)
                 operationNumberBool = True
+                cv2.putText(img, str(result), (250, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
+                            (181, 143, 49),
+                            3)
             elif operationNumber == 6:
-                cv2.putText(img, "Operation: Multiplication" , (10, 200),
+                cv2.putText(img, "Operation: Multiplication", (10, 200),
                             cv2.FONT_HERSHEY_DUPLEX, 1,
                             (255, 255, 255),
                             2)
                 result = firstNumber * secondNumber
-                cv2.putText(img, "Result: " + str(result), (10, 350),
-                            cv2.FONT_HERSHEY_DUPLEX, 2.5,
+                cv2.putText(img, "Result: ", (10, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
                             (255, 255, 255),
+                            3)
+                cv2.putText(img, str(result), (250, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
+                            (181, 143, 49),
                             3)
                 operationNumberBool = True
             elif operationNumber == 8:
-                cv2.putText(img, "Operation: Division" , (10, 200),
+                cv2.putText(img, "Operation: Division", (10, 200),
                             cv2.FONT_HERSHEY_DUPLEX, 1,
                             (255, 255, 255),
                             2)
                 result = firstNumber / secondNumber
-                cv2.putText(img, "Result: " + str(result), (10, 350),
-                            cv2.FONT_HERSHEY_DUPLEX, 2.5,
+                cv2.putText(img, "Result: ", (10, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
                             (255, 255, 255),
                             3)
+                cv2.putText(img, str(result), (250, 300),
+                            cv2.FONT_HERSHEY_DUPLEX, 2,
+                            (181, 143, 49),
+                            3)
                 operationNumberBool = True
-            else :
+            else:
                 secondNumberBool = False
                 operationNumberCount = 0
 
 
-
         if operationNumberBool == True:
-            cv2.putText(img, "Show Both Hands to RESET", (500, 30),
+            cv2.putText(img, "Show Both Hands to RESET", (430, 30),
                         cv2.FONT_HERSHEY_DUPLEX, 1,
                         (255, 255, 255),
                         2)
@@ -252,12 +278,7 @@ while True:
 
             reset = 0
 
-
-
-
-
-
-    cv2.putText(img, str(int(Fingers)), (1235, 30),
+    cv2.putText(img, str(int(Fingers)), (1220, 30),
                 cv2.FONT_HERSHEY_DUPLEX, 1,
                 (181, 143, 49),
                 2)
@@ -270,7 +291,11 @@ while True:
     fps = 1 / (currentTime - previousTime)
     previousTime = currentTime
 
-
-    cv2.putText(img, str(int(fps)), (1235, 50), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
+    cv2.putText(img, "Frames: " + str(int(fps)), (1150, 50), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
+    if handDetector.noOfHands() == 0:
+        cv2.putText(img, "No Hands Found", (1040, 80),
+                    cv2.FONT_HERSHEY_DUPLEX, 0.75,
+                    (0, 0, 255),
+                    2)
     cv2.imshow("Calcul Air", img)
     cv2.waitKey(1)
