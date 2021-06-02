@@ -16,7 +16,7 @@ while True:
     totalFingers2 = 0
     success, img = cap.read()
 
-    img = handDetector.detectHands(img, display=False)
+    img = handDetector.detectHands(img, display=True)
     landmarkList = handDetector.findPosition(img, 0)
     if len(landmarkList) != 0:
         fingerCount = []
