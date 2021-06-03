@@ -1,6 +1,6 @@
 # Calcul-Air - The Air Calculator
  
-This `Neural Networking` project lets you perform basic mathematicial calculations in Air. For this it uses `openCV` to display a real-time feed and `mediapipe` to detect and track Hands 
+This `Neural Networking` project lets you perform basic mathematicial calculations in Air. For this it uses `openCV` to display a real-time feed and `mediapipe` to detect and track Hands.
 
 ## Prerequisites
 
