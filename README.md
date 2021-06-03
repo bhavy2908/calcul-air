@@ -15,3 +15,9 @@ This `Neural Networking` project lets you perform basic mathematicial calculatio
 - type `call venv/Scripts/activate.bat` in cmd.
 - type `pip install -r requirements.txt` in cmd.
 - type `python Calculator.py` in cmd.
+
+
+## Screenshots
+
+![SCREENSHOT](/screenshots/ca-0.png)
+Format: ![Alt Text](url)
