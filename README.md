@@ -20,4 +20,7 @@ This `Neural Networking` project lets you perform basic mathematicial calculatio
 ## Screenshots
 
 ![SCREENSHOT](/screenshots/ca-0.png)
-Format: ![Alt Text](url)
+
+![SCREENSHOT](/screenshots/ca-1.png)
+
+![SCREENSHOT](/screenshots/ca-2.png)
