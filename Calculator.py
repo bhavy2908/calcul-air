@@ -172,7 +172,7 @@ while True:
                         2)
         if secondNumberBool == True and operationNumberCount < 100 and handDetector.noOfHands() != 0:
             if Fingers not in operationList:
-                cv2.putText(img, "Please select an Valid Operation", (850, 80),
+                cv2.putText(img, "Please select a Valid Operation", (850, 80),
                             cv2.FONT_HERSHEY_DUPLEX, 0.75,
                             (0, 0, 255),
                             2)
@@ -243,7 +243,6 @@ while True:
             else:
                 secondNumberBool = False
                 operationNumberCount = 0
-
 
         if operationNumberBool == True:
             cv2.putText(img, "Show Both Hands to RESET", (430, 30),
